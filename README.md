@@ -5,20 +5,20 @@ Ip4J is a small, simple and zero dependencies library for retrieving a request I
 
 ## Features
 
-- Extracts IP addresses from multiple sources:
-  - `X-Client-IP`: The IP address of the client as identified by the application.
-  - `X-Forwarded-For`: A standard header used to identify the originating IP address of a client connecting through a proxy.
-  - `CF-Connecting-IP`: The IP address of the client connecting to a Cloudflare server.
-  - `Fastly-Client-Ip`: The IP address of the client connecting to a Fastly CDN.
-  - `True-Client-Ip`: The original IP address of the client when using Akamai or Cloudflare.
-  - `X-Real-IP`: The IP address of the client as forwarded by Nginx or FastCGI.
-  - `X-Cluster-Client-IP`: The IP address of the client connecting through a Rackspace load balancer or Riverbed Stingray.
-  - `X-Forwarded`: A general header that can contain multiple directives, including the client's IP address.
-  - `Forwarded-For`: A header that can contain multiple comma-separated IPs, returning the first valid one.
-  - `Forwarded`: A general header that can contain multiple directives, including the client's IP address.
-  - `appengine-user-ip`: The IP address of the user connecting to Google App Engine.
-  - `Cf-Pseudo-IPv4`: A fallback header used by Cloudflare to provide a pseudo IPv4 address.
-  - `request.getRemoteAddr()`: The IP address from the request itself if no other headers are present.
+Extracts IP addresses from multiple sources:
+- `X-Client-IP header`: The IP address of the client as identified by the application.
+- `X-Forwarded-For header`: A standard header used to identify the originating IP address of a client connecting through a proxy.
+- `CF-Connecting-IP header`: The IP address of the client connecting to a Cloudflare server.
+- `Fastly-Client-Ip header`: The IP address of the client connecting to a Fastly CDN.
+- `True-Client-Ip header`: The original IP address of the client when using Akamai or Cloudflare.
+- `X-Real-IP header`: The IP address of the client as forwarded by Nginx or FastCGI.
+- `X-Cluster-Client-IP header`: The IP address of the client connecting through a Rackspace load balancer or Riverbed Stingray.
+- `X-Forwarded header`: A general header that can contain multiple directives, including the client's IP address.
+- `Forwarded-For header`: A header that can contain multiple comma-separated IPs, returning the first valid one.
+- `Forwarded header`: A general header that can contain multiple directives, including the client's IP address.
+- `appengine-user-ip header`: The IP address of the user connecting to Google App Engine.
+- `Cf-Pseudo-IPv4 header`: A fallback header used by Cloudflare to provide a pseudo IPv4 address.
+- `request.getRemoteAddr()`: The IP address from the request itself if no other headers are present.
 
 ## Installation
 Ip4j can be easily installed using JitPack, see Gradle and Maven examples below.
