@@ -61,4 +61,8 @@ Add the following to your pom.xml file:
 
 ```
 Ip4j.getIp(request); 
+
+// With custom headers
+Ip4j.getIp(request, "X-Ip");
+Ip4j.getIp(request, "X-Ip", "My-Ip", "IPs"); 
 ```

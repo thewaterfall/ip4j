@@ -3,8 +3,10 @@ package org.waterfallio.ip4j;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import static org.waterfallio.ip4j.Extractors.*;
 
@@ -27,10 +29,11 @@ public class Ip4j {
 
   /**
    * Extracts the client's IP address from the given HttpServletRequest and returns the first non-null and non-empty IP
-   * address found. Return null if not found.
+   * address found. Supports passed custom user headers. Returns null if valid IP address is not found.
    *
    * <p>Sources of ip address:</p>
    * <ul>
+   *   <li>Custom user headers (if multiple comma-separated IPs found - first one is returned)</li>
    *   <li>X-Client-IP header</li>
    *   <li>X-Forwarded-For header (if multiple comma-separated IPs found - first one is returned)</li>
    *   <li>CF-Connecting-IP header</li>
@@ -48,17 +51,18 @@ public class Ip4j {
    * </ul>
    *
    * @param request the HttpServletRequest from which to extract the IP address
+   * @param headers optional custom headers to retrieve IP from (have the highest priority)
    * @return the extracted IP address as a String, or null if no valid IP is found
    */
-  public static String getIp(HttpServletRequest request) {
-    for (Function<HttpServletRequest, String> headerProcessor : IP_EXTRACTORS) {
-      String ip = headerProcessor.apply(request);
-
-      if (ip != null && !ip.isEmpty()) {
-        return ip;
-      }
-    }
-
-    return null;
+  public static String getIp(HttpServletRequest request, String... headers) {
+    return Stream.of(headers)
+        .map(header -> extractFirstIp(header, request))
+        .filter(ip -> ip != null && !ip.isEmpty())
+        .findFirst()
+        .orElseGet(() -> IP_EXTRACTORS.stream()
+            .map(extractor -> extractor.apply(request))
+            .filter(ip -> ip != null && !ip.isEmpty())
+            .findFirst()
+            .orElse(null));
   }
 }
