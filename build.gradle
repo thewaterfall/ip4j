@@ -26,7 +26,7 @@ publishing {
 
             pom {
                 name = 'Ip4J'
-                description = 'Ip4J is a small and simple Java 8+ library for retrieving an IP address from request'
+                description = 'Ip4j is a small and simple Java 8+ library for retrieving an IP address from request'
 
                 licenses {
                     license {
