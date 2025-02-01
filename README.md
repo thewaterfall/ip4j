@@ -1,6 +1,7 @@
 # Ip4J
 
-Ip4J is a small, simple and zero dependencies library for retrieving a request IP address from an
+Ip4J is a small, simple and zero dependencies Java 8+ library for retrieving a request IP address from an
+Ip4J is a small, simple and zero dependencies Java 8+ library for retrieving a request IP address from an
 `HttpServletRequest`. It supports various headers commonly used in web applications to forward client IP addresses.
 
 ## Features
